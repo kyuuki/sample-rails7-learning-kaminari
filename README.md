@@ -1,11 +1,11 @@
-Rails 7 サンプルベース
-======================
+Rails 7 CRUD 学習サンプル
+=========================
 
 [![Build status][shield-build]](#)
 [![MIT licensed][shield-license]](#)
 [![Rails][shield-rails]][rails]
 
-Rails サンプルを作成するためのベース
+Scaffold で CRUD を実装する際のサンプル
 
 ## Table of Contents
 
@@ -25,74 +25,60 @@ Rails サンプルを作成するためのベース
 ### Rails アプリケーション作成
 
 ```sh
-$ rails _7.0.4.3_ new sample-rails7-base -d postgresql --skip-action-mailbox --skip-active-storage --skip-hotwire --skip-jbuilder
-$ cd sample-rails7-base
-$ git add .
-$ git commit -m "Initial commit"
+$ git clone git@github.com:kyuuki/sample-rails7-base.git sample-rails7-learning-crud
+$ cd sample-rails7-learning-crud
 ```
 
 ### GitHub
 
-- GitHub に sample-rails7-base という名前でリポジトリ追加
+- GitHub に sample-rails7-learning-crud という名前でリポジトリ追加
 
 ```sh
-$ git remote add origin git@github.com:kyuuki/sample-rails7-base.git
-$ git branch -M main
-$ git push -u origin main
+$ git remote set-url origin git@github.com:kyuuki/sample-rails7-learning-crud.git
+$ git push
 ```
 
-### データベース設定変更
+### Scaffold
 
-- データベース設定ファイル [config/database.yml](config/database.yml) を変更
+- Scaffold で CRUD のベースを作成
+  - Helper は追加しない
+- https://www.rubyguides.com/2020/03/rails-scaffolding/
+- 記事によってモデルの指定方法が色々あるが rails g scaffold -h で表示される小文字、単数形で実施する
+  - rails g scaffold books
+  - rails g scaffold Book
+  - rails g scaffold book
 
-### 開発用にホスト認証を無効にする
-
-- [config/environments/development.rb](config/environments/development.rb) に `config.hosts.clear` を追加
-
-### RuboCop 導入
-
-- Gemfile に RuboCop 関連の Gem を追加
-- RuboCop 用設定ファイル [.rubocop.yml](.rubocop.yml) を作成
-
-### ルートページ作成
-
-- [config/routes.rb](config/routes.rb) を編集
-
-```ruby
-Rails.application.routes.draw do
-  ...
-  root 'static_page#root'
-  ...
-end
+```sh
+$ rails g scaffold book title:string author:string publication_year:integer --no-helper
+$ rails db:migrate
 ```
 
-- [app/controllers/static_page_controller.rb](app/controllers/static_page_controller.rb) を作成
+### バリデーション追加
 
-```ruby
-class StaticPageController < ApplicationController
-  def root
-    # render :root  # これが省略されている
-  end
-end
-```
+- モデルにバリデーション追加
+- エラー時の CSS を追加
 
-- [app/views/static_page/root.html.erb](app/views/static_page/root.html.erb) を作成
+### 国際化・多言語化 (i18n) 対応
 
-```erb
-<h1>ルートページ</h1>
+- Gem rails-i18n を追加
+- default_locale を ja に
+- config/locales/ja.yml にモデルの翻訳追加
 
-<p>
-  ルートページの内容。
-</p>
-```
+### config/locales/ja.yml にモデルの翻訳追加
+
+- コントローラに書いてある flush メッセージを日本語化
+- HTML に書いてある英語を日本語化
+
+### ルートページに本一覧へのリンクを追加
 
 ## Usage
 
 ```sh
-$ git clone git@github.com:kyuuki/sample-rails7-base.git
-$ cd sample-rails7-base
+$ git clone git@github.com:kyuuki/sample-rails7-learning-crud.git
+$ cd sample-rails7-learning-crud
 $ bundle install
 $ rails db:create
+$ rails db:migrate
 $ rails s -b 0.0.0.0
 ```
 
