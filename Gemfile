@@ -66,3 +66,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# i18n
+# https://github.com/svenfuchs/rails-i18n
+gem "rails-i18n"

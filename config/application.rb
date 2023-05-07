@@ -30,5 +30,9 @@ module SampleRails7Base
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # i18n
+    # https://railsguides.jp/i18n.html
+    config.i18n.default_locale = :ja
   end
 end
