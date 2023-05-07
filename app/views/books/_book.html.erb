@@ -1,16 +1,16 @@
 <div id="<%= dom_id book %>">
   <p>
-    <strong>Title:</strong>
+    <strong><%= t Book.human_attribute_name("title") %></strong>
     <%= book.title %>
   </p>
 
   <p>
-    <strong>Author:</strong>
+    <strong><%= t Book.human_attribute_name("author") %></strong>
     <%= book.author %>
   </p>
 
   <p>
-    <strong>Publication year:</strong>
+    <strong><%= t Book.human_attribute_name("publication_year") %></strong>
     <%= book.publication_year %>
   </p>
 

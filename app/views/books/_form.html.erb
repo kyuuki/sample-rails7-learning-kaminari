@@ -1,7 +1,9 @@
 <%= form_with(model: book) do |form| %>
   <% if book.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <%# http://railman.net/railsguides/5.0/i18n.html#active-record-error-messages-for%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E7%94%A8%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%81%AE%E8%A8%B3%E6%96%87 %>
+      <%# https://qiita.com/blackpeach7/items/f3a0b321fcbab771dabf %>
+      <h2><%= t("errors.template.header", model: Book.model_name.human, count: book.errors.count) %></h2>
 
       <ul>
         <% book.errors.each do |error| %>
