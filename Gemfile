@@ -70,3 +70,7 @@ end
 # i18n
 # https://github.com/svenfuchs/rails-i18n
 gem "rails-i18n"
+
+# Kaminari
+# https://github.com/kaminari/kaminari
+gem "kaminari"

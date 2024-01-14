@@ -3,6 +3,8 @@
 <h1>本一覧</h1>
 
 <div id="books">
+  <%= paginate @books %>
+  
   <% @books.each do |book| %>
     <%= render book %>
     <p>
